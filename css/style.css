@@ -59,6 +59,11 @@
 	border-radius: 5px 25px 25px 5px;
 	z-index: 1;
 	margin-bottom: 15px;
+	word-break: break-word;
+
+}
+.header__input::placeholder {
+	color: white;
 }
 .header__input-is-open{
 	box-shadow: 1px 1px 30px 1px red;
@@ -103,7 +108,7 @@
 	transition: transform 2s, opacity 1s, scale 0.5s;
 	transform:translateX(0);
 	opacity: 1;
-
+	word-break: break-word;
 }
 .todo__item-is-open {
 	opacity: 0;
@@ -218,6 +223,9 @@
 		max-width: 95%;
 		margin: auto;
 	}
+	.header__input {
+		font-size: 30px;
+	}
 }
 
 @media (max-width: 992px) {
@@ -230,10 +238,16 @@
 	.container {
 		max-width: 95%;
 	}
+	.header__input {
+		font-size: 25px;
+	}
 }
 
 @media (max-width: 576px) {
 	.container {
-		max-width: 95%;
+		width: 95%;
+	}
+	.header__input {
+		font-size: 21px;
 	}
 }
