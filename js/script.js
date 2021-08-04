@@ -78,22 +78,27 @@ let render = function () {
 		// удаление одного из элементов туду листа
 		let todoRemoveElem = li.querySelector('.todo__remove');
 		todoRemoveElem.addEventListener('click', function () {
-			const animatePopup = () => {
-				let count = 0;
-				const go = () => {
-					count += 1;
-					const animate = requestAnimationFrame(go);
-					li.classList.add('todo__item-is-open2');
-					if (count === 50) {
-						cancelAnimationFrame(animate);
-						todoData.splice(index, 1);
-						setState();
-						render();
-					}
+			let result = confirm('Вы уверенны?');
+			if (result) {
+
+				const animatePopup = () => {
+					let count = 0;
+					const go = () => {
+						count += 1;
+						const animate = requestAnimationFrame(go);
+						li.classList.add('todo__item-is-open2');
+						if (count === 30) {
+	
+							cancelAnimationFrame(animate);
+							todoData.splice(index, 1);
+							setState();
+							render();
+						}
+					};
+					requestAnimationFrame(go);
 				};
-				requestAnimationFrame(go);
-			};
-			animatePopup();
+				animatePopup();
+			}
 		});
     });
 };
