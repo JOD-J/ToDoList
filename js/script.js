@@ -5,7 +5,8 @@ let
 	// форма списка туду
 	todoControlElem = document.querySelector('.todo__control'),
 	// добовление туду листа
-	headerInputElem = document.querySelector('.header__input'),
+	headerInputHeadingElem = document.querySelector('.header__input-heading'),
+	headerInputTextElem = document.querySelector('.header__input-text'),
 
 	// кнопка добовления туду листа
 	headerButtonElem = document.querySelector('.header__button'),
@@ -45,13 +46,14 @@ let render = function () {
 		// присваеваем элементу ли класс todo-item
 		li.classList.add('todo__item');
 		// выводим в верстку элемент ли 
-		li.innerHTML =
-			'<span class="text__todo">' + item.value + '</span> ' +
-			'<div class="todo__buttons">' +
-			'<button  id="' + index + '"class="todo__remove"></button>' +
-			'<button class="todo__complete"></button>' +
-			'</div>';
-
+		li.innerHTML = `
+		<span class="todo__heading">${item.valueHeading}</span>
+		<span class="todo__text">${item.valueText}</span>
+		<div class="todo__buttons">
+		<button  id="${index}"class="todo__remove"></button>
+		<button class="todo__complete"></button>
+		</div>
+		`;
 		// если item.completed истина добовляеться элемент в выполненый списко туду 
 		if (item.completed) {
 			todoCompletedElem.append(li);
@@ -120,22 +122,28 @@ todoControlElem.addEventListener('submit', function (event) {
 	//  отмена перезагрузки страницы
 	event.preventDefault();
 	// услвоие для не добовления пустых дел в туду лист
-	if (headerInputElem.value) {
-		headerInputElem.classList.remove('header__input-is-open')
-		headerInputElem.placeholder = 'Какие планы?';
+	if (headerInputHeadingElem.value && headerInputTextElem.value) {
+		headerInputHeadingElem.classList.remove('header__input-is-open')
+		headerInputTextElem.classList.remove('header__input-is-open')
+		headerInputHeadingElem.placeholder = 'Заголовок';
+		headerInputTextElem.placeholder = 'Какие планы?';
 		//  в масив todoData пуш значение headerInputElem completed-не выполенный туду лист
 		todoData.push({
-			value: headerInputElem.value,
+			valueHeading: headerInputHeadingElem.value,
+			valueText: headerInputTextElem.value,
 			completed: false,
 		});
 		// очищение поле воода для туду листа после добовление их в сам туду лист 
-		headerInputElem.value = '';
+		headerInputHeadingElem.value = '';
+		headerInputTextElem.value = '';
 		// запуск функции 
 		setState();
 		render();
 	} else {
-		headerInputElem.classList.add('header__input-is-open');
-		headerInputElem.placeholder = 'Поле не может быть пустым!!!';
+		headerInputHeadingElem.classList.add('header__input-is-open');
+		headerInputTextElem.classList.add('header__input-is-open');
+		headerInputHeadingElem.placeholder = 'Поле не может быть пустым!!!';
+		headerInputTextElem.placeholder = 'Поле не может быть пустым!!!';
 	}
 });
 
