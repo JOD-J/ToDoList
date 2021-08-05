@@ -69,7 +69,7 @@
 	word-break: break-word;
 }
 .header__input-heading {
-	width: auto;
+	width: 420px;
 }
 .header__input-text {
 }
@@ -364,6 +364,9 @@
 	.header__input {
 		font-size: 25px;
 	}
+	.header__input-heading {
+		width: 360px;
+	}
 
 }
 
@@ -381,6 +384,9 @@
 
 	.delete__text {
 		font-size: 14px;
+	}
+	.header__input-heading {
+		width: 100%;
 	}
 }
 
